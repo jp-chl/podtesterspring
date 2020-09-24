@@ -9,13 +9,23 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PodtesterspringApplication {
 
+	String hostname;
+
+	public PodtesterspringApplication() {
+		try {
+			hostname = System.getenv("HOSTNAME");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	} // end PodtesterspringApplication()
+
 	public static void main(String[] args) {
 		SpringApplication.run(PodtesterspringApplication.class, args);
 	} // end void main(String[] args)
 
 	@RequestMapping("/")
 	public String home() {
-		return "Hello Docker World";
+		return "Hello World from hostname: ("+hostname+")";
 	}
 
 } // end PodtesterspringApplication
