@@ -1,4 +1,4 @@
-package nectia.com.podtesterspring;
+package jpvr.com.podtesterspring;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
