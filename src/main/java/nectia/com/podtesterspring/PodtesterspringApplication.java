@@ -41,7 +41,7 @@ public class PodtesterspringApplication {
 	 * Main endpoint (/)
 	 * @return Hello World string + hostname + this method's invocation count
 	 */
-	@RequestMapping("/")
+	@RequestMapping(method = RequestMethod.GET, value = "/")
 	public String home() {
 		count++;
 		final String returnMessage = "Hello World from hostname: ("+hostname+"). Called " + count + " times";
@@ -93,7 +93,7 @@ public class PodtesterspringApplication {
 	 * @param url URL to call from
 	 * @return endpoint's response as String
 	 */
-	@RequestMapping("/callanother")
+	@RequestMapping(method = RequestMethod.GET, value = "/callanother")
 	public String callanother(@RequestParam("url") String url) {
 
 		// <servicename>.<namespace>.svc.cluster.local
@@ -111,7 +111,7 @@ public class PodtesterspringApplication {
 	 * Endpoint to check system resources
 	 * @return Used memory, Max memory and Cores
 	 */
-	@RequestMapping("/sysresources")
+	@RequestMapping(method = RequestMethod.GET, value = "/sysresources")
 	public String getSystemResources() {
 		final Runtime rt = Runtime.getRuntime();
 		final long maxMemory = rt.maxMemory() / 1024 / 1024;
@@ -130,7 +130,7 @@ public class PodtesterspringApplication {
 	 * @param percentage max percentage of memory to consume
 	 * @return Informative message about consumption process result
 	 */
-	@RequestMapping("/consume")
+	@RequestMapping(method = RequestMethod.GET, value = "/consume")
 	public String consumeMemory(@RequestParam(value = "percentage", defaultValue = "80") int percentage) {
 		System.out.println("/consume?percentage=" + percentage);
 		final long lPercentage = percentage/100;
@@ -160,7 +160,7 @@ public class PodtesterspringApplication {
 	 * Describe this app's endpoints
 	 * @return list of endpoints' name and description
 	 */
-	@RequestMapping("/endpoints")
+	@RequestMapping(method = RequestMethod.GET, value = "/endpoints")
 	public String getEndpoints() {
 		StringBuffer sb = new StringBuffer();
 
@@ -175,7 +175,7 @@ public class PodtesterspringApplication {
 
 		return sb.toString();
 	} // end String getEndpoints()
-	
+
 	public static String humanReadableByteCount(long bytes, boolean si) {
 		int unit = si ? 1000 : 1024;
 		if (bytes < unit)
