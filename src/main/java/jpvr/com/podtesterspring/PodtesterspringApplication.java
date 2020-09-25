@@ -1,5 +1,9 @@
 package jpvr.com.podtesterspring;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import jpvr.com.podtesterspring.controller.templates.HelloWorldResponseTemplate;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpStatus;
@@ -41,12 +45,32 @@ public class PodtesterspringApplication {
 	 * Main endpoint (/)
 	 * @return Hello World string + hostname + this method's invocation count
 	 */
+	@ApiOperation(value = "Hello world endpoint, returns message + hostname + invocation count", response = String.class)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Success")
+	})
 	@RequestMapping(method = RequestMethod.GET, value = "/")
-	public String home() {
+	//public String home() {
+	//public ResponseEntity<Object> home() {
+	public HelloWorldResponseTemplate home() {
 		count++;
-		final String returnMessage = "Hello World from hostname: ("+hostname+"). Called " + count + " times";
-		System.out.println(returnMessage);
-		return returnMessage;
+//		final String returnMessage = "Hello World from hostname: ("+hostname+"). Called " + count + " times";
+//		System.out.println(returnMessage);
+//		return returnMessage;
+
+		return new
+				HelloWorldResponseTemplate("Hello World",
+				hostname, count);
+//		List<JSONObject> entities = new ArrayList<>();
+//
+//		HashMap<String, String> map = new HashMap<>();
+//		map.put("message", "Hello World");
+//		map.put("hostname", hostname);
+//		map.put("count", ""+count+"");
+//
+//		entities.add(new JSONObject(map));
+//
+//		return new ResponseEntity<Object>(entities, HttpStatus.OK);
 	} // end String home()
 
 	/**
