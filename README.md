@@ -14,12 +14,12 @@
 
 ```bash
 $ ./mvnw package
-$ docker build -t bx-ms-podtester:v1 .
+$ docker build -t podtesterspring:v2 .
 ```
 ---
 ## Run:
 ```bash
-$ docker run -p 8080:8080 bx-ms-podtester:v1
+$ docker run -p 8080:8080 podtesterspring:v2
 ```
 
 ```bash
